@@ -1,0 +1,61 @@
+import unittest
+from Librarydb import (
+    add_book_to_db,
+    remove_book_from_db,
+    search_books_in_db,
+    get_books_from_db
+)
+from LibraryMS import Book, Library
+
+class TestLibraryDB(unittest.TestCase):
+    def setUp(self):
+        # Add a test book
+        self.test_book = Book("Test Book", "Test Author", "1234567890", "2025")
+        add_book_to_db(self.test_book)
+
+    def tearDown(self):
+        # Remove the test book
+        remove_book_from_db("1234567890")
+
+    def test_add_book(self):
+        result = add_book_to_db(self.test_book)
+        self.assertTrue(result, "add_book_to_db failed to add the book.")
+
+    def test_remove_book(self):
+        result = remove_book_from_db("1234567890")
+        self.assertTrue(result, "remove_book_from_db failed to remove the book.")
+
+    def test_search_books_by_title(self):
+        results = search_books_in_db(1, "Test Book")
+        self.assertTrue(any("Test Book" in book for book in results), "search_books_in_db failed to find the book by title.")
+
+    def test_search_books_by_isbn(self):
+        results = search_books_in_db(2, "1234567890")
+        self.assertTrue(any("1234567890" in book for book in results), "search_books_in_db failed to find the book by ISBN.")
+
+    def test_get_books(self):
+        books = get_books_from_db()
+        self.assertIsInstance(books, list, "get_books_from_db did not return a list.")
+
+class TestLibraryMS(unittest.TestCase):
+    def test_book_creation(self):
+        book = Book("Title", "Author", "ISBN", "2025")
+        self.assertEqual(book.title, "Title", "Book title not set correctly.")
+        self.assertEqual(book.author, "Author", "Book author not set correctly.")
+        self.assertEqual(book.isbn, "ISBN", "Book ISBN not set correctly.")
+        self.assertEqual(book.pub, "2025", "Book publication year not set correctly.")
+        self.assertEqual(book.status, "available", "Book status not set to 'available'.")
+
+    def test_library_load_books(self):
+        library = Library()
+        self.assertIsInstance(library.books, list, "Library books is not a list.")
+
+    def test_library_display_books(self):
+        library = Library()
+        try:
+            library.display_books()
+        except Exception as e:
+            self.fail(f"display_books() raised {e}")
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

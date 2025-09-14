@@ -1,0 +1,26 @@
+version: '"3.8"' 
+ 
+services: 
+  app: 
+    build: . 
+    environment: 
+      - DB_HOST=db 
+      - DB_NAME=lms 
+      - DB_USER=postgres 
+      - DB_PASSWORD=postgreSem 
+    depends_on: 
+      - db 
+ 
+  db: 
+    image: postgres:13 
+    environment: 
+      POSTGRES_DB: lms 
+      POSTGRES_USER: postgres 
+      POSTGRES_PASSWORD: postgreSem 
+    ports: 
+      - "5432:5432" 
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data 
+ 
+volumes: 
+  postgres_data: 
