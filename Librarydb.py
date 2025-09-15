@@ -176,7 +176,7 @@ def verify_librarian_id(l_id):
         return librarian_name  
       
     except Exception as e:
-        print("Error searching for librarian id:", e)
+        print("Librarian id not found")
         return []
     finally:
         conn.close()
@@ -281,7 +281,7 @@ def remove_book_from_db_by_isbn(isbn):
             return False
         
         # Delete the book
-        cur.execute("DELETE FROM BOOK WHERE ISBN = %s", (isbn,))
+        cur.execute("DELETE FROM BOOK WHERE ISBN = %s", (isbn,)) #this is a tuple
         
         conn.commit()
         cur.close()
@@ -322,33 +322,6 @@ def get_books_from_db():
     finally:
         conn.close()
 
-
-def get_book_count():
-    """
-    Get the total number of books in the database.
-    
-    Returns:
-        int: Total count of books, 0 if error occurs or no books found.
-        
-    Raises:
-        Exception: If database query fails.
-    """
-    conn = get_db_connection()
-    if conn is None:
-        return 0
-    
-    try:
-        cur = conn.cursor()
-        cur.execute("SELECT COUNT(*) FROM BOOK")
-        count = cur.fetchone()[0]
-        cur.close()
-        return count
-        
-    except Exception as e:
-        print("Error getting book count:", e)
-        return 0
-    finally:
-        conn.close()
 import os
 import psycopg2
 
@@ -358,6 +331,9 @@ def get_db_connection():
     
     Uses environment variables for database configuration with fallback to default values.
     Handles connection errors by printing the error and returning None.
+    Note: For database visualization and management, I used PG Admin,
+    which provided real-time monitoring of database operations and
+    query optimization insights.
     
     Environment Variables:
         DB_HOST: Database host (default: 'localhost')

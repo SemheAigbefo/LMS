@@ -2,12 +2,23 @@
 
 # Library Management System
 # LMS
-A modern library management system built with Python, PostgreSQL, and Docker. Features full CRUD operations for managing books, members, and loans with a responsive console interface.
+A modern library management system built with Python, PostgreSQL, and Docker. Features full CRUD operations for managing books, members, and loans with a responsive console interface,including GUI administration with PG Admin.
+
+### Database Operations Demonstrated:
+- Schema design and migration
+- CRUD operations implementation
+- Connection pooling and error handling
+- Automated database initialization
+
 ## Prerequisites
 
 - Python 3.8+
 - PostgreSQL 13+
 - pip (Python package manager)
+### Database Tools Experience:
+- **PG Admin**: For GUI-based database management and query optimization
+- **psql CLI**: For command-line database operations
+- **Python psycopg2**: For programmatic database integration
 
 ## Installation
 
