@@ -1,3 +1,0 @@
-def test_add_book(self):
-        result = add_book_to_db(self.test_book)
-        self.assertTrue(result, "add_book_to_db failed to add the book.")
