@@ -1,4 +1,4 @@
-# Keep the best of both - Python template plus your additions
+
 __pycache__/
 *.py[cod]
 *$py.class
@@ -16,7 +16,7 @@ venv/
 env/
 .venv/
 
-# Environment variables (CRITICAL - add this if missing)
+# Environment variables 
 .env
 .env.*
 .env.local
@@ -35,4 +35,10 @@ docker-compose.override.yml
 .DS_Store
 Thumbs.db
 
-# Add any other patterns you need
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Code Runner temporary files
+tempCodeRunnerFile*

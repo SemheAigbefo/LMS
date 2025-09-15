@@ -5,7 +5,7 @@ This module contains the main application logic for the Library Management Syste
 including the Book and Librarian classes, Library management, and user interface menus.
 """
 
-from Librarydb import add_book_to_db, remove_book_from_db_by_isbn, search_books_in_db, get_books_from_db, get_book_count, verify_librarian_id
+from Librarydb import add_book_to_db, remove_book_from_db_by_isbn, search_books_in_db, get_books_from_db, verify_librarian_id
 
 
 class Book:
